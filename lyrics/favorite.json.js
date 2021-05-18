@@ -1,5 +1,4 @@
 let favorite = {
-    background: "img/yuvraj-yadav-COb3CTMpsIc-unsplash.jpg",
     bpm:90,
     lyric:[
         {

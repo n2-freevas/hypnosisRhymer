@@ -24,19 +24,18 @@ async function waitDOMLoaded(){
     });
 }
 
-async function importLyric_local(filename){
+async function importLyric(filename,locate){
     return new Promise((resolve,reject) => {
         initialize_elemet()
-        if(filename == 'introduce.json'){
-            lyricJSON = introduce
-        }
-        else if(filename == 'favorite.json'){
-            lyricJSON = favorite
+        if(locate == 'local'){
+            if(lyric == undefined){console.error("lyricsファイルにlyric.jsonを作成してください。")}
+            else{lyricJSON = lyric;}
         }
         else{
-            lyricJSON = lyrics
-        }
-            
+            fetch(filename)
+                .then(response => response.json())
+                .then(data => lyricJSON = data);
+        }   
         console.log(lyricJSON)
         console.log("lyrical Statue is > ",lyricJSON.lyric)
         bpm = lyricJSON.bpm
@@ -144,13 +143,76 @@ function rhymeEndProcess(){
     }
 }
 
+let refresh = false;
+
+
+function RhymeStepEvent(event){
+    if(event.code == 'Enter'){
+        result = nextRhyme()
+        if(result == 'tune-end'){
+            this.removeEventListener('keydown',RhymeStepEvent,false)
+            console.log("TUNE END",event)
+            rhymeEndProcess() //to hypnosisRhymer function
+        }
+    }
+}
+
+
+/* Processer */
+function nextRhyme(){
+    if(refresh){
+        //view_zone.removeChild(view_zone.lastChild)
+        lyricStatic[indexer['frame']].classList.add('none')
+        if(lyricStatic[indexer['frame']+1] == undefined){
+            return 'tune-end'
+        }
+        lyricStatic[indexer['frame']+1].classList.remove('none')
+        if (lyricStatic[indexer['frame']+2] != undefined){
+            lyricStatic[indexer['frame']+2].classList.remove('none')
+        }
+        lyricStatic[indexer['frame']+1].classList.remove('none')
+        
+        indexer['frame'] += 1
+        nowFrame = lyricStatic[indexer['frame']]
+        refresh = false
+    }
+    
+    console.log(indexer)
+    let rhymes_list = nowFrame.childNodes
+    console.log(rhymes_list)
+    let target_rhymes = rhymes_list[indexer['rhymes']]
+    console.log(target_rhymes)
+    let target_rhy = target_rhymes.childNodes[indexer['rhy']]
+    console.log(target_rhy)
+    target_rhy.classList.add('act');
+    if (target_rhymes.childNodes[indexer['rhy'] + 1] == undefined){
+        console.log('rhy end')
+        indexer['rhy'] = 0
+        if (nowFrame.childNodes[indexer['rhymes'] + 1] == undefined){
+            console.log('rhymes end')
+            indexer['rhymes'] = 0
+            refresh = true
+            //view_zone.insertAdjacentElement('beforeend',nowFrame)
+        }
+        else{indexer['rhymes'] += 1}
+
+    }
+    else{indexer['rhy'] += 1}
+    return 'tune-continue'
+}
+
+function setRhyneStepListner(){
+    window.addEventListener('keydown', RhymeStepEvent, false)
+}
+
+
 async function sequence(){
     console.log('sequence launch')
     console.log(await waitDOMLoaded())
     console.log(await initialize_elemet())
 }
-async function loadLyric(filename){
-    console.log(await importLyric_local(filename))
+async function loadLyric(filename,locate){
+    console.log(await importLyric(filename,locate))
     console.log(await rhymeInitialize())
     setRhyneStepListner()
 }

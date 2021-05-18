@@ -15,7 +15,13 @@ async function panelOpen(event){
         if(event.target.getAttribute('class') == 'panel'){
             writeCurtainInfo(event.target.getAttribute('title'),event.target.getAttribute('sentence'))
             black_curtain.classList.add('sliding');
-            loadLyric(event.target.getAttribute('file'));
+            if(event.target.getAttribute(filename='file').indexOf('http') == -1){
+                loadLyric(event.target.getAttribute(filename='file'),"local");
+            }
+            else{
+                loadLyric(event.target.getAttribute('file'));
+            }
+            
             main_slide.classList.add('none');
             setTimeout(()=>{
                 web_video.classList.add('invanish');

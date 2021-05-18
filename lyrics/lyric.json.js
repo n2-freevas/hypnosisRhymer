@@ -1,9 +1,8 @@
-let introduce = {
-    background: "img/yuvraj-yadav-COb3CTMpsIc-unsplash.jpg",
+let lyric = {
     bpm:90,
     lyric:[
         {
-            rhyme: [["おっとおいでなすった"],["男は","太郎"]],
+            rhyme: [["おっとおいでなすった"],["男は","Taro"]],
             action: [["rolls"],["pop","pops"]],
             font:[0,[0,"shadow"]],
             color: [0,[0,"red"]],
@@ -27,7 +26,7 @@ let introduce = {
             position: ["up left","low left"]
         },
         {
-            rhyme: [["どかしてく","Hater"],["最後に立つのは","俺だ"]],
+            rhyme: [["どかしてく","Hater"],["最後に立ってんの","俺だ"]],
             action: [["rolls","fall"],["u","pops"]],
             font:[[0,"eng-cool shadow-white"],[0,"shadow-white"]],
             color: [[0,"purple"],[0,"red"]],
@@ -130,6 +129,5 @@ let introduce = {
             size: [["m"],["m"]],
             position: ["middle left","low left"]   
         }
-        
     ]
 }
