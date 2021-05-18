@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta http-equiv="content-type" charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>n2-lyric</title>
+    <meta name="description" content="TestType of hypnosis lyricer">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/rhyme.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&family=Sawarabi+Gothic&display=swap" rel="stylesheet">
+
+    <!--<script async src="js/lyrics.json.js"></script>-->
+    <script async src="js/introduce.json.js"></script>
+    <script async src="js/favorite.json.js"></script>
+    <!--<script async src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>-->
+    <script async src="js/hypnosisRhymer.js"></script>
+    
+</head>
+<body>
+    <div id ="opening">
+        <div id = 'n2-logo'><img src='img/n2-icon-white.svg'></img></div>
+        <div id ='n2-circle'></div>
+        <div id ='n2-circle2'></div>
+    </div>
+    <video id="web-video"></video>
+    <script async src="js/setCameraMovie.js"></script>
+
+    <section id='background'></section>
+    <section id='view-zone'></section>
+    <div id="black-curtain"><div id="curtain_info"></div></div>
+    <section id='main_slide'>
+        <div id='slide_container'>
+
+        <div class='panel' id="brian" file='introduce.json' title="Introduce Myself" sentence="Lyric: Taro Nonoyama, Music: Ant-up">
+            
+            <div class='img-box'><img src="img/brian_162.png"></div>
+            <div class='string-box'>
+                <div class='title'>Introduce　<i class="fas fa-play-circle"></i></div>
+                <div class='sentence'>自己紹介次に事後承諾<br>最近の情勢はIts alright<br>HypnosisRhymerの新しい体験をお届けするぜ</div>
+            </div>
+            
+        </div>
+        <div class='panel' id="ant_up"  file='lyrics.json' title='title' sentence="sentence">
+            <div class='img-box'><img src="img/cent-candy.png"></div>
+            <div class='string-box'>
+                <div class='title'>Enthusiasm　<i class="fas fa-play-circle"></i></div>
+                <div class='sentence'></div>
+            </div>
+            
+        </div>
+
+        <div class='panel' id="tokyo_drift" file='favorite.json' title="My Favorite" sentence="Lyric: Taro Nonoyama, Music: TERIYAKI BOYS">
+            <div class='img-box'><img src="img/tokyo-drift.png"></div>
+            <div class='string-box'>
+                <div class='title'>My Favorite　<i class="fas fa-play-circle"></i></div>
+                <div class='sentence'>Tokyo Driftのインストがコロナで流行ったの覚えてるかい？<br>便乗して、俺の趣味を俺のイカしたバースとフロウに乗せるぜ</div>
+            </div>
+            
+        </div>
+
+        <div class='panel' id="trap_beat" file='introduce.json' title='title' sentence="sentence">
+            <div class='img-box'><img src="img/trap_beat.png"></div>
+            <div class='string-box'>
+                <div class='title'>No contents　<i class="fas fa-play-circle"></i></div>
+                <div class='sentence'></div>
+            </div>
+            
+        </div>
+        <div class='panel' id="trap_beat" file='introduce.json' title='title' sentence="sentence">
+            <div class='img-box'><img src="img/hiphop3.jpg"></div>
+            <div class='string-box'>
+                <div class='title'>Ending (trap)　<i class="fas fa-play-circle"></i></div>
+                <div class='sentence'></div>
+            </div>
+            
+        </div>
+        <div class='panel' id="trap_beat" file='introduce.json' title='title' sentence="sentence">
+            <div class='img-box'><img src="img/hypnosis_rhymer-logo.png"></div>
+            <div class='string-box'>
+                <div class='title'>HypnosisRhymer　<i class="fas fa-play-circle"></i></div>
+                <div class='sentence'>俺のスタジオで開発したこのHypnosisRhymerはOSS、あるいは商用化を狙ってるぜ<br>コラボレータは間に合ってるけどいつでも募集してるぜ</div>
+            </div>
+            
+        </div>
+        </div>
+    </section>
+    <footer>
+        <div class='footer-img'><img src="img/n2-icon-white.svg"></div>
+        <div class='footer-img'><img src="img/nfs-logo.png"></div>
+        <div class='footer-img'><img src="img/hypnosis_rhymer-logo.svg"></div>
+    </footer>
+</body>
+<script src="js/hypnosisRhymer_Process.js"></script>
+<script src="js/selectLyric.js"></script>
+</html>

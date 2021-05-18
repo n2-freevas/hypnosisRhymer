@@ -1,5 +1,37 @@
-#view-zone {
+@charset "UTF-8";
+:root {
+  --font-yellow:#ffc400;
+  --font-red:#e60000;
+  --font-pink:#ff1ea1;
+  --font-blue:#2300c0;
+  --font-green:#399b00;
+  --font-purple:#750085;
+  --font-gray:#5f5f5f;
+  --font-black:#000000;
+  --fontsize-xsmall:60px;
+  --fontsize-small:90px;
+  --fontsize-normal:120px;
+  --fontsize-large:160px;
+  --fontsize-xlarge:200px;
+}
+
+#web-video {
   position: fixed;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  opacity: 0.6;
+  opacity: 0;
+}
+
+#web-video.invanish {
+  opacity: 0.5;
+}
+
+#background {
+  position: fixed;
+  z-index: -1;
   top: 0;
   left: 0;
   width: 100%;
@@ -9,7 +41,7 @@
   background-position: center;
 }
 
-#view-zone:before {
+#background:before {
   content: '';
   background: inherit;
   -webkit-filter: blur(5px);
@@ -25,11 +57,693 @@
   z-index: -1;
 }
 
-.rhyme {
+#view-zone {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.frame {
+  position: fixed;
+  padding: 10px;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: white;
+}
+
+.frame.none {
+  display: none;
+}
+
+.rhymes {
   position: absolute;
-  top: 25%;
-  left: 25%;
-  font-size: 16px;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  z-index: 5;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  padding: 80px;
+}
+
+.rhymes.vert {
+  -webkit-writing-mode: vertical-rl;
+      -ms-writing-mode: tb-rl;
+          writing-mode: vertical-rl;
+}
+
+.rhymes.up {
+  top: 0;
+}
+
+.rhymes.middle {
+  height: 100%;
+}
+
+.rhymes.low {
+  bottom: 0;
+}
+
+.rhymes.low.vert {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.rhymes.left {
+  left: 0;
+}
+
+.rhymes.center {
+  width: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.rhymes.right {
+  right: 0;
+}
+
+.rhymes.rotate {
+  -webkit-transform: rotate(-15deg);
+          transform: rotate(-15deg);
+}
+
+.rhymes .rhy {
+  position: relative;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  margin: 0 20px;
+  /* color */
+  font-size: var(--fontsize-normal);
+  /* size */
+  font-size: var(--fontsize-normal);
+  /* font */
+  font-family: 'Hiragino Kaku Gothic Std','ヒラギノ角ゴ W3', 'メイリオ', 'ＭＳ Ｐゴシック',sans-serif;
+  /* action */
+}
+
+.rhymes .rhy.c-yellow {
+  color: var(--font-yellow);
+}
+
+.rhymes .rhy.c-red {
+  color: var(--font-red);
+}
+
+.rhymes .rhy.c-pink {
+  color: var(--font-pink);
+}
+
+.rhymes .rhy.c-blue {
+  color: var(--font-blue);
+}
+
+.rhymes .rhy.c-green {
+  color: var(--font-green);
+}
+
+.rhymes .rhy.c-purple {
+  color: var(--font-purple);
+}
+
+.rhymes .rhy.c-gray {
+  color: var(--font-gray);
+}
+
+.rhymes .rhy.c-black {
+  color: var(--font-black);
+}
+
+.rhymes .rhy.s-xs {
+  font-size: var(--fontsize-xsmall);
+}
+
+.rhymes .rhy.s-s {
+  font-size: var(--fontsize-small);
+}
+
+.rhymes .rhy.s-m {
+  font-size: var(--fontsize-normal);
+}
+
+.rhymes .rhy.s-l {
+  font-size: var(--fontsize-large);
+}
+
+.rhymes .rhy.s-xl {
+  font-size: var(--fontsize-xlarge);
+}
+
+.rhymes .rhy.f-eng-cool {
+  font-family: 'Noto Serif', serif;
+}
+
+.rhymes .rhy.f-jp-strong {
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+.rhymes .rhy.f-shadow {
+  text-shadow: 10px 10px 0 #5f5f5f;
+}
+
+.rhymes .rhy.f-shadow span {
+  text-shadow: 10px 10px 0 #5f5f5f;
+}
+
+.rhymes .rhy.f-shadow-white {
+  text-shadow: 10px 10px 0 white;
+}
+
+.rhymes .rhy.f-shadow-white span {
+  text-shadow: 10px 10px 0 white;
+}
+
+.rhymes .rhy.f-shadow-red {
+  text-shadow: 10px 10px 0 var(--font-red);
+}
+
+.rhymes .rhy.f-shadow-red span {
+  text-shadow: 10px 10px 0 var(--font-red);
+}
+
+.rhymes .rhy.f-bold {
+  font-weight: bold;
+}
+
+.rhymes .rhy.a-u {
+  opacity: 0;
+}
+
+.rhymes .rhy.a-u.act {
+  opacity: 1;
+}
+
+.rhymes .rhy.a-pop {
+  -webkit-transform-origin: center bottom;
+          transform-origin: center bottom;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+}
+
+.rhymes .rhy.a-pop.act {
+  -webkit-animation: a-pop 0.15s ease both;
+          animation: a-pop 0.15s ease both;
+}
+
+.rhymes .rhy.a-pops span {
+  display: inline-block;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-transform-origin: center bottom;
+          transform-origin: center bottom;
+}
+
+.rhymes .rhy.a-pops.act span {
+  -webkit-animation: a-pop 0.3s ease both;
+          animation: a-pop 0.3s ease both;
+}
+
+.rhymes .rhy.a-pops.act span:nth-of-type(2) {
+  -webkit-animation-delay: 0.06s;
+          animation-delay: 0.06s;
+}
+
+.rhymes .rhy.a-pops.act span:nth-of-type(3) {
+  -webkit-animation-delay: 0.09s;
+          animation-delay: 0.09s;
+}
+
+.rhymes .rhy.a-pops.act span:nth-of-type(4) {
+  -webkit-animation-delay: 0.12s;
+          animation-delay: 0.12s;
+}
+
+.rhymes .rhy.a-pops.act span:nth-of-type(5) {
+  -webkit-animation-delay: 0.15s;
+          animation-delay: 0.15s;
+}
+
+.rhymes .rhy.a-pops.act span:nth-of-type(6) {
+  -webkit-animation-delay: 0.18s;
+          animation-delay: 0.18s;
+}
+
+.rhymes .rhy.a-pops.act span:nth-of-type(7) {
+  -webkit-animation-delay: 0.21s;
+          animation-delay: 0.21s;
+}
+
+.rhymes .rhy.a-pops.act span:nth-of-type(8) {
+  -webkit-animation-delay: 0.24s;
+          animation-delay: 0.24s;
+}
+
+.rhymes .rhy.a-pops.act span:nth-of-type(9) {
+  -webkit-animation-delay: 0.27s;
+          animation-delay: 0.27s;
+}
+
+.rhymes .rhy.a-pops.act span:nth-of-type(10) {
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s;
+}
+
+.rhymes .rhy.a-pops.act span:nth-of-type(11) {
+  -webkit-animation-delay: 0.33s;
+          animation-delay: 0.33s;
+}
+
+.rhymes .rhy.a-pops.act span:nth-of-type(12) {
+  -webkit-animation-delay: 0.36s;
+          animation-delay: 0.36s;
+}
+
+.rhymes .rhy.a-pops.act span:nth-of-type(13) {
+  -webkit-animation-delay: 0.39s;
+          animation-delay: 0.39s;
+}
+
+.rhymes .rhy.a-pops.act span:nth-of-type(14) {
+  -webkit-animation-delay: 0.42s;
+          animation-delay: 0.42s;
+}
+
+.rhymes .rhy.a-pops.act span:nth-of-type(15) {
+  -webkit-animation-delay: 0.45s;
+          animation-delay: 0.45s;
+}
+
+.rhymes .rhy.a-pops.act span:nth-of-type(16) {
+  -webkit-animation-delay: 0.48s;
+          animation-delay: 0.48s;
+}
+
+.rhymes .rhy.a-pops.act span:nth-of-type(17) {
+  -webkit-animation-delay: 0.51s;
+          animation-delay: 0.51s;
+}
+
+.rhymes .rhy.a-pops.act span:nth-of-type(18) {
+  -webkit-animation-delay: 0.54s;
+          animation-delay: 0.54s;
+}
+
+.rhymes .rhy.a-pops.act span:nth-of-type(19) {
+  -webkit-animation-delay: 0.57s;
+          animation-delay: 0.57s;
+}
+
+.rhymes .rhy.a-pops.act span:nth-of-type(20) {
+  -webkit-animation-delay: 0.6s;
+          animation-delay: 0.6s;
+}
+
+.rhymes .rhy.a-pops.act span:nth-of-type(21) {
+  -webkit-animation-delay: 0.63s;
+          animation-delay: 0.63s;
+}
+
+.rhymes .rhy.a-pops.act span:nth-of-type(22) {
+  -webkit-animation-delay: 0.66s;
+          animation-delay: 0.66s;
+}
+
+.rhymes .rhy.a-pops.act span:nth-of-type(23) {
+  -webkit-animation-delay: 0.69s;
+          animation-delay: 0.69s;
+}
+
+.rhymes .rhy.a-pops.act span:nth-of-type(24) {
+  -webkit-animation-delay: 0.72s;
+          animation-delay: 0.72s;
+}
+
+.rhymes .rhy.a-pops.act span:nth-of-type(25) {
+  -webkit-animation-delay: 0.75s;
+          animation-delay: 0.75s;
+}
+
+.rhymes .rhy.a-pops.act span:nth-of-type(26) {
+  -webkit-animation-delay: 0.78s;
+          animation-delay: 0.78s;
+}
+
+.rhymes .rhy.a-pops.act span:nth-of-type(27) {
+  -webkit-animation-delay: 0.81s;
+          animation-delay: 0.81s;
+}
+
+.rhymes .rhy.a-pops.act span:nth-of-type(28) {
+  -webkit-animation-delay: 0.84s;
+          animation-delay: 0.84s;
+}
+
+.rhymes .rhy.a-pops.act span:nth-of-type(29) {
+  -webkit-animation-delay: 0.87s;
+          animation-delay: 0.87s;
+}
+
+.rhymes .rhy.a-pops.act span:nth-of-type(30) {
+  -webkit-animation-delay: 0.9s;
+          animation-delay: 0.9s;
+}
+
+@-webkit-keyframes a-pop {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  80% {
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes a-pop {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  80% {
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+.rhymes .rhy.a-slide {
+  overflow: hidden;
+  -webkit-transform: translate(-100%, 0);
+          transform: translate(-100%, 0);
+  -webkit-transition: -webkit-transform linear 0.15s;
+  transition: -webkit-transform linear 0.15s;
+  transition: transform linear 0.15s;
+  transition: transform linear 0.15s, -webkit-transform linear 0.15s;
+}
+
+.rhymes .rhy.a-slide span {
+  display: block;
+  -webkit-transform: translate(100%, 0);
+          transform: translate(100%, 0);
+  -webkit-transition: -webkit-transform linear 0.15s;
+  transition: -webkit-transform linear 0.15s;
+  transition: transform linear 0.15s;
+  transition: transform linear 0.15s, -webkit-transform linear 0.15s;
+}
+
+.rhymes .rhy.a-slide.act, .rhymes .rhy.a-slide.act span {
+  -webkit-transform: translate(0, 0);
+          transform: translate(0, 0);
+}
+
+.rhymes .rhy.a-fall {
+  -webkit-transform: translate(0, -100vh);
+          transform: translate(0, -100vh);
+}
+
+.rhymes .rhy.a-fall.act {
+  -webkit-animation: a-fall 0.5s ease-in both;
+          animation: a-fall 0.5s ease-in both;
+}
+
+@-webkit-keyframes a-fall {
+  0% {
+    -webkit-transform: translate(0, -100vh) rotate(15deg);
+            transform: translate(0, -100vh) rotate(15deg);
+  }
+  50% {
+    -webkit-transform: translate(0, 0) rotate(0deg);
+            transform: translate(0, 0) rotate(0deg);
+  }
+  70% {
+    -webkit-transform: translate(0, 80px) rotate(-30deg);
+            transform: translate(0, 80px) rotate(-30deg);
+  }
+  85% {
+    -webkit-transform: translate(0, -200px) rotate(-45deg);
+            transform: translate(0, -200px) rotate(-45deg);
+  }
+  100% {
+    -webkit-transform: translate(0, 0) rotate(0deg);
+            transform: translate(0, 0) rotate(0deg);
+  }
+}
+
+@keyframes a-fall {
+  0% {
+    -webkit-transform: translate(0, -100vh) rotate(15deg);
+            transform: translate(0, -100vh) rotate(15deg);
+  }
+  50% {
+    -webkit-transform: translate(0, 0) rotate(0deg);
+            transform: translate(0, 0) rotate(0deg);
+  }
+  70% {
+    -webkit-transform: translate(0, 80px) rotate(-30deg);
+            transform: translate(0, 80px) rotate(-30deg);
+  }
+  85% {
+    -webkit-transform: translate(0, -200px) rotate(-45deg);
+            transform: translate(0, -200px) rotate(-45deg);
+  }
+  100% {
+    -webkit-transform: translate(0, 0) rotate(0deg);
+            transform: translate(0, 0) rotate(0deg);
+  }
+}
+
+.rhymes .rhy.a-rolls span {
+  display: inline-block;
+  -webkit-transform: rotate(-90deg) scale(0);
+          transform: rotate(-90deg) scale(0);
+}
+
+.rhymes .rhy.a-rolls.act span {
+  -webkit-animation: a-roll 0.3s ease both;
+          animation: a-roll 0.3s ease both;
+}
+
+.rhymes .rhy.a-rolls.act span:nth-of-type(2) {
+  -webkit-animation-delay: 0.06s;
+          animation-delay: 0.06s;
+}
+
+.rhymes .rhy.a-rolls.act span:nth-of-type(3) {
+  -webkit-animation-delay: 0.09s;
+          animation-delay: 0.09s;
+}
+
+.rhymes .rhy.a-rolls.act span:nth-of-type(4) {
+  -webkit-animation-delay: 0.12s;
+          animation-delay: 0.12s;
+}
+
+.rhymes .rhy.a-rolls.act span:nth-of-type(5) {
+  -webkit-animation-delay: 0.15s;
+          animation-delay: 0.15s;
+}
+
+.rhymes .rhy.a-rolls.act span:nth-of-type(6) {
+  -webkit-animation-delay: 0.18s;
+          animation-delay: 0.18s;
+}
+
+.rhymes .rhy.a-rolls.act span:nth-of-type(7) {
+  -webkit-animation-delay: 0.21s;
+          animation-delay: 0.21s;
+}
+
+.rhymes .rhy.a-rolls.act span:nth-of-type(8) {
+  -webkit-animation-delay: 0.24s;
+          animation-delay: 0.24s;
+}
+
+.rhymes .rhy.a-rolls.act span:nth-of-type(9) {
+  -webkit-animation-delay: 0.27s;
+          animation-delay: 0.27s;
+}
+
+.rhymes .rhy.a-rolls.act span:nth-of-type(10) {
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s;
+}
+
+.rhymes .rhy.a-rolls.act span:nth-of-type(11) {
+  -webkit-animation-delay: 0.33s;
+          animation-delay: 0.33s;
+}
+
+.rhymes .rhy.a-rolls.act span:nth-of-type(12) {
+  -webkit-animation-delay: 0.36s;
+          animation-delay: 0.36s;
+}
+
+.rhymes .rhy.a-rolls.act span:nth-of-type(13) {
+  -webkit-animation-delay: 0.39s;
+          animation-delay: 0.39s;
+}
+
+.rhymes .rhy.a-rolls.act span:nth-of-type(14) {
+  -webkit-animation-delay: 0.42s;
+          animation-delay: 0.42s;
+}
+
+.rhymes .rhy.a-rolls.act span:nth-of-type(15) {
+  -webkit-animation-delay: 0.45s;
+          animation-delay: 0.45s;
+}
+
+.rhymes .rhy.a-rolls.act span:nth-of-type(16) {
+  -webkit-animation-delay: 0.48s;
+          animation-delay: 0.48s;
+}
+
+.rhymes .rhy.a-rolls.act span:nth-of-type(17) {
+  -webkit-animation-delay: 0.51s;
+          animation-delay: 0.51s;
+}
+
+.rhymes .rhy.a-rolls.act span:nth-of-type(18) {
+  -webkit-animation-delay: 0.54s;
+          animation-delay: 0.54s;
+}
+
+.rhymes .rhy.a-rolls.act span:nth-of-type(19) {
+  -webkit-animation-delay: 0.57s;
+          animation-delay: 0.57s;
+}
+
+.rhymes .rhy.a-rolls.act span:nth-of-type(20) {
+  -webkit-animation-delay: 0.6s;
+          animation-delay: 0.6s;
+}
+
+.rhymes .rhy.a-rolls.act span:nth-of-type(21) {
+  -webkit-animation-delay: 0.63s;
+          animation-delay: 0.63s;
+}
+
+.rhymes .rhy.a-rolls.act span:nth-of-type(22) {
+  -webkit-animation-delay: 0.66s;
+          animation-delay: 0.66s;
+}
+
+.rhymes .rhy.a-rolls.act span:nth-of-type(23) {
+  -webkit-animation-delay: 0.69s;
+          animation-delay: 0.69s;
+}
+
+.rhymes .rhy.a-rolls.act span:nth-of-type(24) {
+  -webkit-animation-delay: 0.72s;
+          animation-delay: 0.72s;
+}
+
+.rhymes .rhy.a-rolls.act span:nth-of-type(25) {
+  -webkit-animation-delay: 0.75s;
+          animation-delay: 0.75s;
+}
+
+.rhymes .rhy.a-rolls.act span:nth-of-type(26) {
+  -webkit-animation-delay: 0.78s;
+          animation-delay: 0.78s;
+}
+
+.rhymes .rhy.a-rolls.act span:nth-of-type(27) {
+  -webkit-animation-delay: 0.81s;
+          animation-delay: 0.81s;
+}
+
+.rhymes .rhy.a-rolls.act span:nth-of-type(28) {
+  -webkit-animation-delay: 0.84s;
+          animation-delay: 0.84s;
+}
+
+.rhymes .rhy.a-rolls.act span:nth-of-type(29) {
+  -webkit-animation-delay: 0.87s;
+          animation-delay: 0.87s;
+}
+
+.rhymes .rhy.a-rolls.act span:nth-of-type(30) {
+  -webkit-animation-delay: 0.9s;
+          animation-delay: 0.9s;
+}
+
+@-webkit-keyframes a-roll {
+  0% {
+    -webkit-transform: rotate(-90deg) scale(0);
+            transform: rotate(-90deg) scale(0);
+  }
+  100% {
+    -webkit-transform: rotate(0deg) scale(1);
+            transform: rotate(0deg) scale(1);
+  }
+}
+
+@keyframes a-roll {
+  0% {
+    -webkit-transform: rotate(-90deg) scale(0);
+            transform: rotate(-90deg) scale(0);
+  }
+  100% {
+    -webkit-transform: rotate(0deg) scale(1);
+            transform: rotate(0deg) scale(1);
+  }
+}
+
+.rhymes .rhy.a-curtain {
+  opacity: 0;
+}
+
+.rhymes .rhy.a-curtain::before, .rhymes .rhy.a-curtain::after {
+  content: "";
+  background: black;
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  -webkit-transition: 0.3s ease-in;
+  transition: 0.3s ease-in;
+}
+
+.rhymes .rhy.a-curtain::before {
+  left: -30px;
+}
+
+.rhymes .rhy.a-curtain::after {
+  right: -30px;
+}
+
+.rhymes .rhy.a-curtain.act {
+  opacity: 1;
+}
+
+.rhymes .rhy.a-curtain.act::before, .rhymes .rhy.a-curtain.act::after {
+  width: 0;
 }
 /*# sourceMappingURL=rhyme.css.map */

@@ -1,0 +1,175 @@
+@font-face {
+    font-family: "font/OTF/lil stuart.otf";
+    src: url();
+}
+#black-curtain{
+    position: fixed;
+    z-index:10;
+    width:100vw;height:100vh;top:100vw;left:0;
+    background: black;
+    
+    &.sliding{animation: black-curtain-sliding 2s ease-in-out backwards;
+        &.end{animation: black-curtain-slidingend 2s ease-in-out backwards;}
+    }
+    #curtain_info{
+        position: absolute;
+        top:50%;left:50%;
+        width:100%;
+        transform: translate(-50%,-50%);
+        text-align: center;
+        color:white}
+    .curtain-title{
+        font-size:35px;
+        transition: 1s;
+    }
+    .curtain-sentence{
+        font-size:25px;
+        transition: 1s 0.5s;
+    }
+}
+@keyframes black-curtain-sliding {0%{top:100vw;}20%{top:0;}80%{top:0;}100%{top:-100vw;}}
+@keyframes black-curtain-slidingend {0%{top:-100vw;}20%{top:0;}80%{top:0;}100%{top:100vw;}}
+#opening{
+    color:white;
+    position: fixed;
+    top:0;
+    right:0;
+    z-index: 100;
+}
+#n2-logo{
+    z-index:103;
+    position: fixed;
+    right:50px;
+    top:50px;
+    width:50px;
+    animation: skew2 2s infinite;
+}
+#n2-circle,#n2-circle2{
+    z-index:102;
+    position: fixed;
+    border: solid 2px white;
+    
+}
+#n2-circle{
+    --circle_r:180px;
+    right:-15px;
+    top: -15px;
+    width:var(--circle_r);
+    height:var(--circle_r);
+    border-radius:calc(var(--circle_r) / 2);    
+    animation: threed-round infinite 10s;
+
+}
+#n2-circle2{
+    --circle2_r:130px;
+    transform: rotateX(75deg);
+    right:10px;
+    top:10px;
+    width:var(--circle2_r);
+    height:var(--circle2_r);
+    border-radius:calc(var(--circle2_r) / 2);
+    animation: threed-round2 linear infinite 12s;
+    
+}
+@keyframes threed-round{
+    0%{transform: rotate3d(1,1,1,0deg);}
+    25%{transform: rotate3d(1,1,1,90deg);}
+    50%{transform: rotate3d(1,1,1,180deg);}
+    75%{transform: rotate3d(1,1,1,270deg);}
+    100%{transform: rotate3d(1,1,1,360deg);}
+}
+@keyframes threed-round2{
+    0%{transform: rotate3d(1,0,1,-15deg);}
+    25%{transform: rotate3d(1,1,0,75deg);}
+    50%{transform: rotate3d(0,1,1,165deg);}
+    75%{transform: rotate3d(1,0,1,255deg);}
+    100%{transform: rotate3d(1,1,0,345deg);}
+}
+@keyframes skew2 {
+    0% {transform: none;}
+    33% {transform: none;}
+    33.3% {transform: skewX(15deg);}
+    33.6% {transform: skewX(-15deg);}
+    33.9% {transform: none;}
+    66% {transform: none;}
+    66.3% {transform: skewX(20deg);}
+    66.6% {transform: skewX(-20deg);}
+    66.9% {transform: none;}
+    77% {transform: none;}
+    77.3% {transform: skewX(10deg);}
+    77.6% {transform: skewX(-10deg);}
+    77.9% {transform: none;}
+}
+#main_slide{
+    position: fixed;
+    z-index:11;
+    top:0;left:0;
+    width: 100%;
+    padding: 150px 100px;
+    transition: 0.5s;
+    opacity: 1;
+    &.none{
+        opacity: 0;
+    }
+
+    #slide_container{
+        max-width: 900px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        overflow-y: scroll;
+        margin:0 auto;
+    
+        .panel{
+            width:calc(50% - 40px);
+            margin:20px;
+            padding: 20px;
+            background: white;
+            opacity: 0.9;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: row;
+            .img-box{
+                width: 30%;
+                border-radius: 10px 0 0 10px;
+                overflow: hidden;
+                display: flex;
+                justify-content: center;
+                img{
+                    width:250px;
+                    height: auto;
+                }
+            }
+            .string-box{
+                width:70%;
+                padding: 10px 20px;
+                font-family: 'Noto Sans JP', sans-serif;
+                .title{
+                    font-size:20px;
+                    font-weight: 700;
+                }
+                .sentence{
+                    padding: 5px;
+                    font-size:12px;
+                    
+                }
+            }
+        }
+    }
+}
+
+footer{
+    position: fixed;
+    z-index:100;
+    bottom: 0;
+    width:100vw;
+    height:60px;
+    display: flex;
+    padding:0 20px;
+    .footer-img{
+        margin: 10px 15px;
+        img{height: 40px;}
+        
+    }
+}

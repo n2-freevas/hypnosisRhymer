@@ -1,61 +1,157 @@
-var lyricJSON
-var lyricStatic = []
-var view_zone = document.getElementById('view-zone')
+let lyricJSON = null
+let lyricStatic = []
+let AnimaStatic = []
+let bpm = 0
+let indexer = {frame: 0, rhymes: 0, rhy: 0};
+let MAX_Index = {frame: 0}
+let isDOMLoaded = false;
+let nowFrame = null;
 
-window.addEventListener('keydown',event =>{
-    console.log(event.code)
-})
+let view_zone = null;
 
-async function inportLyric_local(){
-    new Promise((resolve,reject) => {
-        lyricJSON = n2f_introduce
+window.addEventListener('DOMContentLoaded',function(){
+    isDOMLoaded = true
+},false)
+async function waitDOMLoaded(){
+    return new Promise(resolve => {
+        // is DOMLoaded Complete?
+        let rep = setInterval(function(){
+            if(isDOMLoaded){
+                clearTimeout(rep)
+                resolve('[Promiss] DOM is Loaded')
+            }
+        },500)
+    });
+}
+
+async function importLyric_local(filename){
+    return new Promise((resolve,reject) => {
+        initialize_elemet()
+        if(filename == 'introduce.json'){
+            lyricJSON = introduce
+        }
+        else if(filename == 'favorite.json'){
+            lyricJSON = favorite
+        }
+        else{
+            lyricJSON = lyrics
+        }
+            
         console.log(lyricJSON)
-        console.log(lyricJSON.lyric)
+        console.log("lyrical Statue is > ",lyricJSON.lyric)
+        bpm = lyricJSON.bpm
+        MAX_Index['frame'] = lyricJSON.lyric.length
+        for(let i=0; i<lyricJSON.lyric.length;i++){
+            console.log(lyricJSON.lyric[i])
+            generateRhymeFrame(lyricJSON.lyric[i]).then(function(result){
+                console.log(result["frame_div"], result["animation_info"]);
+                result["frame_div"].classList.add('none');
+                lyricStatic.push(result["frame_div"]);
+                AnimaStatic.push(result["animation_info"]);
+                view_zone.insertAdjacentElement('beforeend',result["frame_div"]);
+            });
+        }
+        resolve("[Promiss] Success lyric setting");
+    });
+}
+
+async function generateRhymeFrame(lyr){
+    return new Promise((resolve,reject) => {
+        let frame = document.createElement('div')
+        frame.classList.add('frame');
         
-        for(var i=0; i<lyricJSON.lyric.length;i++){
-            lyr = lyricJSON.lyric[i]
-            var frame = generateRhymeFrame(lyr)
-            console.log(frame)
-            view_zone.insertAdjacentElement('beforeend',frame)
-            lyricStatic.push(frame)
+        let rhyme = lyr.rhyme;
+        let action = lyr.action;
+        let position = lyr.position;
+
+        let color,anime,size,font = null;
+        if(lyr.color != undefined || typeof(lyr.coder) != 'object'){color = lyr.color;}
+        if(lyr.size != undefined || typeof(lyr.size) != 'object'){size = lyr.size;}
+        if(lyr.font != undefined || typeof(lyr.font) != 'object'){font = lyr.font;}
+        if(lyr.animation != undefined){ anime = lyr.animation;}
+
+        console.log(rhyme, action, position, color, size, font, anime)
+        for(let i=0; i < rhyme.length; i++){
+            let rhymes_div = document.createElement('div');
+            rhymes_div.classList.add('rhymes');
+            if(typeof(position[i]) == 'string'){
+                pos = position[i].split(' ')
+                for(let j=0; j<pos.length;j++){ rhymes_div.classList.add(pos[j])}}
+            
+            
+            for(let j=0; j < rhyme[i].length; j++){
+                let r_div = document.createElement('div')
+                r_div.classList.add('rhy')
+                
+                r_div.classList.add('a-'+action[i][j])
+                if(size != null){
+                    if(typeof(size[i][j]) == 'string'){r_div.classList.add('s-'+size[i][j])}}
+                if(color != null){
+                    if(typeof(color[i][j]) == 'string'){r_div.classList.add('c-'+color[i][j])}}
+                if(font != null){
+                    if(typeof(font[i][j]) == 'string'){
+                        ft = font[i][j].split(' ')
+                        for(let k=0; k<ft.length;k++){r_div.classList.add('f-'+ft[k])}}}
+                r_div = rhyPartGenerate(r_div, rhyme[i][j])
+                rhymes_div.insertAdjacentElement('beforeend',r_div);
+            }
+            frame.insertAdjacentElement('beforeend',rhymes_div)
         }
-        resolve();
-    })
+        resolve({"frame_div": frame, "animation_info": anime})
+    });
 }
 
-function generateRhymeFrame(lyr){
-    var frame = document.createElement('div')
-    frame.classList.add('frame')
-    
-    var rhyme = lyr.rhyme;
-    var action = lyr.action;
-    var color = lyr.color;
-    var position = lyr.position;
-    var animation = null
-    if(lyr.animation != undefined){
-        animation = lyr.animation
-    }
-
-    for(var i=0; i < rhyme.length; i++){
-        var rhy = document.createElement('div')
-        rhy.classList.add(position[i])
-        for(var j=0; j < rhyme[i].length; j++){
-            var str = document.createElement('div')
-            str.classList.add(action[i][j])
-            if(color != "n"){str.classList.add(color[i][j])}
-            str.insertAdjacentText('beforeend',rhyme[i][j])
-            rhy.insertAdjacentElement('beforeend',str)
+function rhyPartGenerate(r_div,string){
+    classes = r_div.classList
+    if(classes.contains('a-rolls')||classes.contains('a-pops')){
+        for(let i=0; i<string.length;i++){
+            if(string[i] == ' '){r_div.insertAdjacentHTML('beforeend',"<span>"+"&nbsp;"+"</span>")}
+            else{r_div.insertAdjacentHTML('beforeend',"<span>"+string[i]+"</span>")}
         }
-        console.log(rhy)
-        frame.insertAdjacentElement('beforeend',rhy)
     }
-    return frame
+    else if(classes.contains('a-slide')){
+        r_div.insertAdjacentHTML('beforeend',"<span>"+string+"</span>")
+    }
+    else{r_div.insertAdjacentText('beforeend',string)}
+    return r_div;
 }
 
-
-async function initialize(){
-    await inportLyric_local()
-    console.log('init end')
+async function initialize_elemet(){
+    return new Promise((resolve,reject) => {
+        view_zone = document.getElementById('view-zone')
+        console.log(view_zone)
+        resolve("[Promiss] initialization end");
+    });
 }
 
-initialize()
+async function rhymeInitialize(){
+    return new Promise((resolve,reject) => {
+        nowFrame = lyricStatic[0]
+        lyricStatic[0].classList.remove('none')
+        if (lyricStatic[1] != undefined){
+            lyricStatic[1].classList.remove('none')
+        }
+        resolve("[Promiss] all rhymes waiting for you Flow!");
+    });
+}
+
+function rhymeEndProcess(){
+    let clone = view_zone.cloneNode( false );
+    view_zone.parentNode.replaceChild( clone , view_zone );
+    if(typeof rhymeEndListner == 'function'){
+        console.log('Listen to <<rhyme process end>>')
+        rhymeEndListner();
+    }
+}
+
+async function sequence(){
+    console.log('sequence launch')
+    console.log(await waitDOMLoaded())
+    console.log(await initialize_elemet())
+}
+async function loadLyric(filename){
+    console.log(await importLyric_local(filename))
+    console.log(await rhymeInitialize())
+    setRhyneStepListner()
+}
+sequence()
