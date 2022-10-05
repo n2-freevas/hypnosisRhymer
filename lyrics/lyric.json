@@ -2,7 +2,7 @@
     "bpm":90,
     "lyric":[
         {
-            "rhyme": [["おっとおいでなすった"],["男は","Taro"]],
+            "rhyme": [["おっとおいでなすった"],["イカれた","Site"]],
             "action": [["rolls"],["pop","pops"]],
             "font":[0,[0,"shadow"]],
             "color": [0,[0,"red"]],
@@ -42,7 +42,7 @@
             "position": ["vert top left","low center","vert low right"]
         },
         {
-            "rhyme": [["親父左遷食らって"],["飛ばされた","Aichi"]],
+            "rhyme": [["けど調子こいた結果で"],["飛ばされいく","Dumpに"]],
             "action": [["u"],["rolls","pop"]],
             "font":[["shadow-white"],[0,"shadow-white"]],
             "color": [["black"],[0,"green"]],
@@ -50,7 +50,7 @@
             "position": ["vert top left","vert low right"]
         },
         {
-            "rhyme": [["孤独の中"],["啜る甘い蜜が","おいちい"]],
+            "rhyme": [["逆境の中"],["啜る甘い蜜で","Hypeに"]],
             "action": [["pop"],["u","rolls"]],
             "font":[["shadow-white"],[0,"shadow-white"]],
             "color": [["black"],["yellow","green"]],
@@ -58,7 +58,7 @@
             "position": ["top left","vert low right"]
         },
         {
-            "rhyme": [["今じゃここ(Nagoya)で"],["俺の名を","知らねぇ奴"],["もういねぇや"]],
+            "rhyme": [["今じゃここで"],["俺の名を","知らねぇ奴"],["もういねぇや"]],
             "action": [["u"],["u","u"],["curtain"]],
             "font":[0,0,["shadow-white"]],
             "color": [0,0,["red"]],
@@ -114,11 +114,11 @@
             "position": ["low right","vert top left"]
         },
         {
-            "rhyme": [["名乗り遅れました"],["M","C","Name is"],["FreeVAS"]],
-            "action": [["u"],["u","u","u"],["curtain"]],
-            "font":[0,["eng-cool","eng-cool","eng-cool"],["eng-cool shadow-red"]],
+            "rhyme": [["ご紹介遅れました"],["This","is"],["Hyp.Rhymer"]],
+            "action": [["u"],["u","u"],["curtain"]],
+            "font":[0,["eng-cool","eng-cool"],["eng-cool shadow-red"]],
             "color": [0,0,0],
-            "size": [["s"],["s","s","s"],["l"]],
+            "size": [["s"],["s","s"],["l"]],
             "position": ["top center","low center","middle center"]
         },
         {

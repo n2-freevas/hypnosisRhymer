@@ -27,6 +27,7 @@ async function waitDOMLoaded(){
 async function importLyric(filename,locate){
     return new Promise((resolve,reject) => {
         initialize_elemet()
+        console.log(filename)
         if(locate == 'local'){
             if(lyric == undefined){console.error("lyricsファイルにlyric.jsonを作成してください。")}
             else{lyricJSON = lyric;}

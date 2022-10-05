@@ -2,7 +2,7 @@ const brian = document.getElementById('brian');
 const ant_up = document.getElementById('ant_up');
 const tokyo_drift = document.getElementById('tokyo_drift');
 const trap_beat = document.getElementById('trap_beat');
-const panels = document.querySelectorAll(".panel");
+const go_icons = document.querySelectorAll(".go_icon");
 const main_slide = document.getElementById('main_slide');
 const black_curtain = document.getElementById('black-curtain');
 let curtain_info
@@ -12,23 +12,25 @@ async function panelOpen(event){
     if(button_active){
         button_active = false;
         curtain_info = document.getElementById('curtain_info');
-        if(event.target.getAttribute('class') == 'panel'){
-            writeCurtainInfo(event.target.getAttribute('title'),event.target.getAttribute('sentence'))
-            black_curtain.classList.add('sliding');
-            if(event.target.getAttribute(filename='file').indexOf('http') == -1){
-                loadLyric(event.target.getAttribute(filename='file'),"local");
-            }
-            else{
-                loadLyric(event.target.getAttribute('file'));
-            }
-            
-            main_slide.classList.add('none');
-            setTimeout(()=>{
-                web_video.classList.add('invanish');
-                
-            },1000)
-            //window.addEventListener('keydown', serCurtainOpener, false);
+        console.log(event.target.getAttribute('class'))
+        console.log(event)
+        writeCurtainInfo(event.target.getAttribute('title'),event.target.getAttribute('sentence'))
+        black_curtain.classList.add('sliding');
+        if(event.target.getAttribute(filename='file').indexOf('http') == -1){
+            loadLyric(event.target.getAttribute(filename='file'),"local");
         }
+        else{
+            loadLyric(event.target.getAttribute('file'));
+        }
+        
+        main_slide.classList.add('none');
+        setTimeout(()=>{
+            web_video.classList.add('invanish');
+            
+        },1000)
+        window.addEventListener('keydown', serCurtainOpener, false);
+    
+        button_active = true;
     }
 }
 function writeCurtainInfo(title,sentence){
@@ -47,7 +49,7 @@ function serCurtainOpener(){
     window.removeEventListener('keydown',serCurtainOpener,false);
 }
 
-panels.forEach(element =>{
+go_icons.forEach(element =>{
     element.addEventListener('click',panelOpen,false);
 });
 
